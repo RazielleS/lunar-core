@@ -4,13 +4,15 @@ const get = (wm, key, creator) => (wm.has(key) ? wm.get(key) : create(wm, key, c
 const stores = new WeakMap();
 const root = {};
 
-const store = schema => {
-  const track = generator => (...args) => {
-    const [obj, , , info] = args;
-    const entities = get(stores, schema, () => new WeakMap());
-    const childMap = get(entities, obj || root, () => new Map());
-    return get(childMap, info.fieldName, () => generator(...args));
-  };
+export const store = schema => {
+  const track =
+    generator =>
+    (...args) => {
+      const [obj, , , info] = args;
+      const entities = get(stores, schema, () => new WeakMap());
+      const childMap = get(entities, obj || root, () => new Map());
+      return get(childMap, info.fieldName, () => generator(...args));
+    };
 
   const reset = () => stores.delete(schema);
 
@@ -53,5 +55,3 @@ const store = schema => {
     track,
   };
 };
-
-module.exports = {store};
