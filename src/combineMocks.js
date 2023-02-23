@@ -9,11 +9,13 @@ const chainMerge = (left, right) =>
     {...left}
   );
 
-const mergeFns = (leftFn, rightFn) => (...args) => {
-  const rightValue = rightFn(...args);
-  if (rightValue === null) return rightValue;
-  return Object.assign(leftFn(...args), rightValue);
-};
+const mergeFns =
+  (leftFn, rightFn) =>
+  (...args) => {
+    const rightValue = rightFn(...args);
+    if (rightValue === null) return rightValue;
+    return Object.assign(leftFn(...args), rightValue);
+  };
 
 const combineMocks = (schema, ...mocks) => {
   const MutationTypeName = schema.getMutationType().name;
@@ -32,4 +34,4 @@ const combineMocks = (schema, ...mocks) => {
   }, {});
 };
 
-module.exports = combineMocks;
+export default combineMocks;

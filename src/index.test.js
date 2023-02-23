@@ -1,9 +1,10 @@
-const {
+import {jest} from '@jest/globals';
+import {
   buildSchemaFromTypeDefinitions,
   //  addMockFunctionsToSchema
-} = require('graphql-tools');
-const {graphql} = require('graphql');
-const {addMockFunctionsToSchema, removeMockFunctionsFromSchema} = require('./');
+} from 'graphql-tools';
+import {graphql} from 'graphql';
+import {addMockFunctionsToSchema, removeMockFunctionsFromSchema} from './';
 
 const schemaString = `
   type Foo {
